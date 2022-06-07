@@ -1,0 +1,17 @@
+$def with(mensaje)
+<a href="/" class="myButton">Regresar</a>
+
+<h1>Incio de sesion seguro</h1>
+
+$if mensaje != None:
+    <p>$mensaje</p>
+
+<form action="" method="POST">
+    <label for="email">Email</label>
+    <input type="text" name="email" value="admin@email.com">
+    <br>
+    <label for="password">Password</label>
+    <input type="text" required name="password" value="admin">
+    <br>
+    <input type="submit" value="Iniciar sesion">
+</form>
