@@ -86,7 +86,7 @@ class IniciarSesionSeguro:
             password = password.hexdigest()  # Parsea el password a hexadecimal
             print(email, password)  # Imprime los datos
             conexion = sqlite3.connect(
-                "usuarios.sqlite"
+                "sql/usuarios.sqlite"
             )  # Conecta con la base de datos
             conexion.row_factory = sqlite3.Row  # Establece el row factory
             cursor = conexion.cursor()  # Crea un cursor
@@ -153,7 +153,7 @@ class IniciarSesionInseguro:
             password = password.hexdigest()  # Parsea el password a hexadecimal
             print(email, password)  # Imprime los datos para verificar los valores
             # Verifica si el usuario existe
-            conexion = sqlite3.connect("usuarios.sqlite")  # Abre la conexion
+            conexion = sqlite3.connect("sql/usuarios.sqlite")  # Abre la conexion
             conexion.row_factory = sqlite3.Row  # Establece el row factory
             cursor = conexion.cursor()  # Obtiene el cursor
             # Concatena el email y el password, lo hace vulnerable a inyeccion de SQL
