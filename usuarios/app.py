@@ -85,9 +85,7 @@ class IniciarSesionSeguro:
             password = hashlib.md5(password.encode())  # Genera un hash del password
             password = password.hexdigest()  # Parsea el password a hexadecimal
             print(email, password)  # Imprime los datos
-            conexion = sqlite3.connect(
-                "sql/usuarios.sqlite"
-            )  # Conecta con la base de datos
+            conexion = sqlite3.connect("sql/usuarios.sqlite")  # Abre la conexion con la base de datos
             conexion.row_factory = sqlite3.Row  # Establece el row factory
             cursor = conexion.cursor()  # Crea un cursor
             # Utiliza parametros para evitar inyeccion de SQL
