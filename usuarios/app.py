@@ -92,7 +92,11 @@ class IniciarSesionSeguro:
             cursor = conexion.cursor()  # Crea un cursor
             # Utiliza parametros para evitar inyeccion de SQL
             result = cursor.execute(
-                "select count(usuarios.uid) as auth from usuarios where usuarios.email=? and usuarios.password=? and usuarios.status='activo';",
+                """select count(usuarios.uid) as auth 
+                from usuarios 
+                where usuarios.email=? and 
+                usuarios.password=? and 
+                usuarios.status='activo';""",
                 (email, password),
             )
             result = result.fetchall()[0]["auth"]  # Obtiene el primer registro
