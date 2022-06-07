@@ -97,7 +97,7 @@ http://localhost:8080
 En este ejemplo se utilza SQL Injection para probar la seguridad de la aplicación.
 
     * Email: admin@email.com'--
-    * Contraseña: misupercontraseña:)
+    * Contraseña: misupercontraseña
 
 **Nota:** cuando las consultas que se realizan concantenan los caracteres que se ingresan, el sistema es vulnerable a SQL Injection.
 
@@ -148,4 +148,86 @@ En este ejemplo se utiliza un input de tipo **email** para el campo **email**, y
     <br>
     <input type="submit" value="Iniciar sesion">
 </form>
+```
+
+
+### 12. Probar la seguridad de la aplicación
+
+Utilizar curl para validar el inicio de sesión.
+
+    * Email: admin@email.com
+    * Contraseña: admin
+
+```bash
+curl -X POST -F 'email=admin@email.com' -F 'password=admin' http://localhost:8080/inicio_sesion_seguro
+```
+
+Resultado:
+```bash
+303 See Other
+```
+
+```bash
+curl -X POST -F 'email=admin@email.com' -F 'password=admin' http://localhost:8080/inicio_sesion_inseguro
+```
+
+Resultado:
+
+```bash
+303 See Other
+```
+
+Utilizar curl para validar el inicio de sesión implamentando SQL Injection.
+
+    * Email: admin@email.com'--
+    * Contraseña: admin
+
+```bash
+curl -X POST -F "email=admin@email.com'--" -F 'password=misupercontraseña' http://localhost:8080/inicio_sesion_inseguro
+```
+
+
+Resultado:
+
+```bash
+303 See Other
+```
+
+
+```bash
+curl -X POST -F "email=admin@email.com'--" -F 'password=misupercontraseña' http://localhost:8080/inicio_sesion_seguro
+```
+
+Resultado:
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ejemplos de inicio de sesion</title>
+    <link rel="stylesheet" href="../static/css/stylesheet.css">
+    <meta name="description" content="Ejemplos de inicio de sesion">
+</head>
+
+<h1>Incio de sesion seguro</h1>
+
+<p>Verifique usuario y contraseña</p>
+
+<form action="" method="POST">
+    <label for="email">Email</label>
+    <input type="text" name="email" value="admin@email.com">
+    <br>
+    <label for="password">Password</label>
+    <input type="text" required name="password" value="admin">
+    <br>
+    <input type="submit" value="Iniciar sesion">
+</form>
+
+    </div>
+</body>
+
+</html>
 ```
